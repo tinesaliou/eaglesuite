@@ -68,7 +68,7 @@ $contentFile = $allowedPages[$page] ?? 'pages/404.php';
 
 $noLayoutPages = [
     'pos-entry',
-    'pos-open',
+    'pos-open test',
     'pos-pin',
     'pos_guard',
     'export_report_achats',
