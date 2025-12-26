@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="etat_clients_impayes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2e4f6a8-b9c0-4d1e-8123-234567890abc">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQLAdapter"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DATE_DEBUT" class="java.sql.Timestamp"/>
+	<parameter name="DATE_FIN" class="java.sql.Timestamp"/>
+	<parameter name="LOGO_PATH" class="java.lang.String"/>
+	<parameter name="TITRE_RAPPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IMAGE_LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+        c.idClient AS client_id,
+        c.nom AS client_nom,
+        c.telephone AS client_tel,
+        COALESCE(SUM(v.totalTTC),0) AS total_facture,
+        COALESCE(SUM(v.montant_verse),0) AS total_paye,
+        COALESCE(SUM(v.totalTTC),0) - COALESCE(SUM(v.montant_verse),0) AS reste_a_payer,
+        MAX(v.date_vente) AS derniere_facture
+      FROM clients c
+      LEFT JOIN ventes v ON v.client_id = c.idClient
+        AND ($P{DATE_DEBUT} IS NULL OR v.date_vente >= $P{DATE_DEBUT})
+        AND ($P{DATE_FIN} IS NULL OR v.date_vente <= $P{DATE_FIN})
+      GROUP BY c.idClient, c.nom, c.telephone
+      HAVING (COALESCE(SUM(v.totalTTC),0) - COALESCE(SUM(v.montant_verse),0)) > 0
+      ORDER BY reste_a_payer DESC]]>
+	</queryString>
+	<field name="client_id" class="java.lang.Integer"/>
+	<field name="client_nom" class="java.lang.String"/>
+	<field name="client_tel" class="java.lang.String"/>
+	<field name="total_facture" class="java.math.BigDecimal"/>
+	<field name="total_paye" class="java.math.BigDecimal"/>
+	<field name="reste_a_payer" class="java.math.BigDecimal"/>
+	<field name="derniere_facture" class="java.sql.Timestamp"/>
+	<variable name="SUM_totalFacture" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_facture}]]></variableExpression>
+	</variable>
+	<variable name="SUM_totalPaye" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_paye}]]></variableExpression>
+	</variable>
+	<variable name="SUM_reste" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{reste_a_payer}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="60">
+			<image>
+				<reportElement x="0" y="0" width="80" height="60" uuid="75608971-68a2-422d-872e-d450f8e9e068"/>
+				<imageExpression><![CDATA[$P{IMAGE_LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="100" y="0" width="455" height="30" uuid="c72432c0-ad20-4cdc-822e-fafcdc60c87f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITRE_RAPPORT} == null ? "État - Clients impayés" : $P{TITRE_RAPPORT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="32" width="455" height="16" uuid="af9f6fde-494c-405c-a621-d98a052bb392"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Période : " + ($P{DATE_DEBUT}==null?"-": new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{DATE_DEBUT})) + " → " + ($P{DATE_FIN}==null?"-": new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{DATE_FIN}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="200" height="22" forecolor="#FFFFFF" backcolor="#FF8C00" uuid="db086bf0-c506-437d-832d-bfc5b1ad9c65"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Client]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="0" width="110" height="22" forecolor="#FFFFFF" backcolor="#FF8C00" uuid="e5a77cfa-33b2-4da6-8828-ae9a41b22b9d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total facturé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="310" y="0" width="110" height="22" forecolor="#FFFFFF" backcolor="#FF8C00" uuid="ea0bc369-bfca-44c5-ad69-862d9181069d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total payé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="0" width="135" height="22" forecolor="#FFFFFF" backcolor="#FF8C00" uuid="43f015e2-39c4-42b5-a5d2-7cc6ab03281b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reste à payer]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="20" uuid="5840483c-c170-465b-bb67-9b62fda1a010"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_nom}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="200" y="0" width="110" height="20" uuid="e70e4a54-3784-4933-a4cd-c03af1079d65"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_facture}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="310" y="0" width="110" height="20" uuid="eabac7fe-7d55-4dbe-88ae-05becaeb8b75"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{total_paye}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="420" y="0" width="135" height="20" uuid="74837918-4707-405a-ae2f-2d8ecd4de49b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reste_a_payer}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="64">
+			<line>
+				<reportElement x="300" y="0" width="255" height="1" uuid="58269641-963c-455d-b44a-3c836d3c790b"/>
+			</line>
+			<staticText>
+				<reportElement x="300" y="8" width="100" height="14" uuid="3cd3ac22-2815-44e9-9969-884421e580d6"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totaux :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="400" y="8" width="110" height="14" uuid="8795959e-a04e-430c-a19c-5786f334bdd0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_totalFacture}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="400" y="28" width="110" height="14" uuid="9dda4e94-3b56-4181-83d2-e4ac8684351a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_totalPaye}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="400" y="48" width="110" height="14" uuid="e387464c-4588-4ae3-9399-0b96c62aef77"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SUM_reste}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

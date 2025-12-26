@@ -1,0 +1,1 @@
+"C:\xampp\htdocs\eaglesuite\pages\rapports/utils/jasperstarter8.bat" process "C:\xampp\htdocs\eaglesuite\pages\rapports/achats/journal_achats.jasper" -f pdf -o "C:\xampp\htdocs\eaglesuite\pages\rapports/exports/achats\rapport_journal_achats_20251202_001908" -t mysql -H localhost -P 3306 -n eaglesuite -u saliou -p tine -P TITRE_RAPPORT="Journal achats" 

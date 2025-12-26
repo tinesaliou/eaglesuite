@@ -1,0 +1,1 @@
+[2025-12-11 23:46:53] SEND to 221781160120 => {"error":{"message":"Invalid OAuth access token - Cannot parse access token","type":"OAuthException","code":190,"fbtrace_id":"A1s0Clng5zDSbwSzMsTJkE0"}}

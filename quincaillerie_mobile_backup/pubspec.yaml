@@ -1,0 +1,42 @@
+name: quincaillerie_mobile
+description: ERP Quincaillerie - Mobile
+
+environment:
+  sdk: ">=2.18.0 <4.0.0"
+
+dependencies:
+  fl_chart: ^0.68.0
+
+  intl: ^0.19.0
+  printing: ^5.11.0
+  pdf: ^3.11.0
+  
+  
+  flutter:
+    sdk: flutter
+  http: ^0.13.6
+    
+
+  # state management / DI / HTTP / storage
+  flutter_bloc: ^9.1.1
+  dio: ^5.0.2
+  get_it: ^8.2.0
+  shared_preferences: ^2.1.1
+  equatable: ^2.0.5
+  flutter_secure_storage: ^9.2.4 # optionnel si tu veux plus sécurisé
+
+  image_picker: ^1.1.2
+  shimmer: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+

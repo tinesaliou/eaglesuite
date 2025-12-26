@@ -1,0 +1,7 @@
+/* crm_opps.css - styles légers pour pipeline */
+.opp-card { cursor: grab; }
+.opp-card.dragging { opacity: .6; border: 2px dashed #bbb; transform: scale(.995); }
+.opp-column { min-height: 120px; }
+.opp-column .card { transition: box-shadow .12s ease; }
+.opp-column .card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+#stagesList .list-group-item { cursor: grab; }

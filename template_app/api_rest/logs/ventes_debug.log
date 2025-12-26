@@ -1,0 +1,727 @@
+[2025-11-06 22:38:52] Array
+(
+    [create_request] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+        )
+
+)
+
+[2025-11-06 22:38:52] Array
+(
+    [create_error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 22:39:01] Array
+(
+    [create_request] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+        )
+
+)
+
+[2025-11-06 22:39:01] Array
+(
+    [create_error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 22:39:11] Array
+(
+    [create_request] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+        )
+
+)
+
+[2025-11-06 22:39:11] Array
+(
+    [create_error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 22:40:27] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+        )
+
+)
+
+[2025-11-06 23:25:27] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => RAS
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-06 23:25:27] Array
+(
+    [error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 23:26:07] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => RAS
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-06 23:26:07] Array
+(
+    [error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 23:26:17] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => RAS
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-06 23:26:17] Array
+(
+    [error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 23:26:51] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 0
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3776
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => RAS
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-06 23:26:51] Array
+(
+    [error] => SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`eaglesuite`.`ventes_details`, CONSTRAINT `FK_ventes_details_depots` FOREIGN KEY (`depot_id`) REFERENCES `depots` (`id`))
+)
+
+[2025-11-06 23:36:23] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+        )
+
+)
+
+[2025-11-07 11:40:13] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 2
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 6400
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-07 13:39:58] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 50000
+            [mode_paiement] => Chèque
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-07 16:03:22] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.entreprise_logo' in 'field list'
+)
+
+[2025-11-07 16:03:37] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'e.entreprise_logo' in 'field list'
+)
+
+[2025-11-07 18:10:42] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 42000
+            [mode_paiement] => Mobile Money
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-07 18:13:03] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                    [1] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 1000
+            [montant_verse] => 40000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-08 15:20:07] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 2
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 40000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-12 23:58:04] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 0
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-12 23:58:53] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 0
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 11:23:05] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 0
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 11:24:07] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 0
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 655.96
+            [devise_id] => 3
+        )
+
+)
+
+[2025-11-13 11:31:19] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 0
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 12:15:54] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3200
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 13:58:08] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 13:59:21] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 14:00:17] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 3000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 16:40:04] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 30000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 17:11:08] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 42000
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-13 17:26:12] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 2
+                            [quantite] => 1
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 64.025
+            [mode_paiement] => Espèces
+            [type_vente] => Comptant
+            [commentaire] => 
+            [taux_change] => 655.96
+            [devise_id] => 3
+        )
+
+)
+

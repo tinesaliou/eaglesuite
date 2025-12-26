@@ -1,0 +1,17 @@
+SELECT 
+    v.id AS vente_id,
+    c.nom AS nom_client,
+    v.date_vente,
+    p.nom AS produit,
+    vd.quantite,
+    vd.prix_unitaire,
+    (vd.quantite * vd.prix_unitaire) AS total_ligne,
+    v.total_general,
+    v.montant_verse,
+    (v.total_general - v.montant_verse) AS reste_payer
+FROM ventes v
+INNER JOIN clients c ON v.client_id = c.id
+INNER JOIN ventes_details vd ON v.id = vd.vente_id
+INNER JOIN produits p ON vd.produit_id = p.id
+WHERE v.id = $P{VENTE_ID}
+ORDER BY vd.id ASC;

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="avoir_client" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50" uuid="c1234f5a-6789-4bcd-8e9f-123456789abc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DOCUMENT_ID" class="java.lang.Integer"/>
+	<parameter name="TITRE_RAPPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IMAGE_LOGO" class="java.lang.String"/>
+	<field name="client_nom" class="java.lang.String"/>
+	<field name="client_adresse" class="java.lang.String"/>
+	<field name="client_tel" class="java.lang.String"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="date_vente" class="java.sql.Timestamp"/>
+	<field name="produit_nom" class="java.lang.String"/>
+	<field name="quantite" class="java.math.BigDecimal"/>
+	<field name="unite" class="java.lang.String"/>
+	<field name="reference" class="java.lang.String"/>
+	<field name="ligne_total" class="java.math.BigDecimal"/>
+	<field name="totalTTC" class="java.math.BigDecimal"/>
+	<field name="description" class="java.lang.String"/>
+	<title>
+		<band height="80">
+			<image>
+				<reportElement x="0" y="0" width="120" height="60" uuid="a0a36c01-7146-4f47-b06f-1d465451ebe2"/>
+				<imageExpression><![CDATA[$P{IMAGE_LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="140" y="0" width="375" height="22" uuid="76497c5d-0bbf-4f8d-8c84-28305c9594a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" isItalic="false" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITRE_RAPPORT} == null ? "AVOIR CLIENT" : $P{TITRE_RAPPORT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70">
+			<staticText>
+				<reportElement x="0" y="0" width="80" height="15" uuid="1d694079-9155-494b-bb3b-a59f420558bf"/>
+				<text><![CDATA[Client :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="0" width="300" height="15" uuid="29ed3739-e8c9-4020-ae39-646f3d91eed1"/>
+				<textFieldExpression><![CDATA[$F{client_nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="390" y="0" width="60" height="15" uuid="8f09344d-6790-4669-997d-48a68130a83b"/>
+				<text><![CDATA[Avoir N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="0" width="65" height="15" uuid="8d4b156e-44e1-47ec-85ea-099da67daa0a"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="21" width="80" height="15" uuid="7bc2deb1-5802-4e65-b44e-d054de8d757d"/>
+				<text><![CDATA[Adresse:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="21" width="300" height="15" uuid="90e8d771-ab40-4d21-a8cd-ff566b1115d7"/>
+				<textFieldExpression><![CDATA[$F{client_adresse}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="300" height="20" uuid="9314c1ba-6b02-4635-9472-12e47f9e9aec"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Désignation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="80" height="20" uuid="59ca6394-1e81-4bca-8303-11c87c3ad299"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="135" height="20" uuid="ba0ce774-9801-4d21-bac5-758a0e2aa1d6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<textField>
+				<reportElement x="0" y="0" width="300" height="16" uuid="0a939093-fcb7-49b3-9593-60bf90484485"/>
+				<textFieldExpression><![CDATA[$F{produit_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="80" height="16" uuid="06eb5cc3-2bf0-4cb2-8879-26a92ff3e016"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{quantite}.doubleValue()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="380" y="0" width="135" height="16" uuid="b2bb92b0-154c-4d99-b2a3-b289bb76a8c4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{ligne_total}.doubleValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="120">
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="18" uuid="09878f3b-af6e-48c3-9862-88381cd51e06"/>
+				<text><![CDATA[Total Avoir :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="400" y="0" width="115" height="18" uuid="7367ec23-acbd-4a9f-a4ad-52f4f03aadaf"/>
+				<textFieldExpression><![CDATA[$F{totalTTC}.doubleValue()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="515" height="18" uuid="e3b82280-1a30-49d6-87bb-3439a5ebce94"/>
+				<text><![CDATA[Motif / Commentaire :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="60" width="515" height="40" uuid="d9c8543c-678f-4725-a80e-cb4d29906bdd"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="104" width="515" height="16" uuid="55d9e995-ea3c-4474-817d-f7d2a297b6ee"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Document comptable: conservez ce justificatif.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,148 @@
+[2025-11-17 17:58:16] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 17:58:25] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 17:58:34] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 18:04:59] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 5
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 16520
+            [mode_paiement] => Espèces
+            [type_achat] => Comptant
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-17 18:05:58] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 5
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 16520
+            [mode_paiement] => Espèces
+            [type_achat] => Comptant
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-17 18:06:40] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 5
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 16520
+            [mode_paiement] => Espèces
+            [type_achat] => Comptant
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-17 18:06:55] Array
+(
+    [action] => create
+    [payload] => Array
+        (
+            [client_id] => 1
+            [produits] => Array
+                (
+                    [0] => Array
+                        (
+                            [id] => 1
+                            [quantite] => 5
+                            [depot_id] => 1
+                        )
+
+                )
+
+            [remise] => 0
+            [montant_verse] => 16520
+            [mode_paiement] => Espèces
+            [type_achat] => Comptant
+            [taux_change] => 1
+            [devise_id] => 1
+        )
+
+)
+
+[2025-11-17 18:09:10] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 21:58:33] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 21:58:42] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 21:58:50] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+
+[2025-11-17 21:59:54] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'v.id' in 'where clause'
+)
+

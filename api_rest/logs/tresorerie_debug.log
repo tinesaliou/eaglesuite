@@ -1,0 +1,30 @@
+[2025-11-19 11:47:18] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cr.reste_a_payer' in 'where clause'
+)
+
+[2025-11-19 11:47:28] Array
+(
+    [global_error] => SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cr.reste_a_payer' in 'where clause'
+)
+
+[2025-11-20 11:53:39] Array
+(
+    [global_error] => SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SSELECT cr.*, c.nom AS client_nom, d.symbole AS symbole, d.taux_par_defaut AS...' at line 1
+)
+
+[2025-11-20 11:53:45] Array
+(
+    [global_error] => SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SSELECT cr.*, c.nom AS client_nom, d.symbole AS symbole, d.taux_par_defaut AS...' at line 1
+)
+
+[2025-11-20 11:54:01] Array
+(
+    [global_error] => SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SSELECT cr.*, c.nom AS client_nom, d.symbole AS symbole, d.taux_par_defaut AS...' at line 1
+)
+
+[2025-11-20 11:55:09] Array
+(
+    [global_error] => SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SSELECT cr.*, c.nom AS client_nom, d.symbole AS symbole, d.taux_par_defaut AS...' at line 1
+)
+

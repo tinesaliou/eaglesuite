@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+    http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+    name="ticket_caisse"
+    pageWidth="300" pageHeight="420" columnWidth="280"
+    leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="12345678-aaaa-bbbb-cccc-123456789abc">
+
+    <!-- Paramètres (reliés à ton SQL via iReport) -->
+    <parameter name="VENTE_ID" class="java.lang.Integer"/>
+    <parameter name="LOGO_PATH" class="java.lang.String"/>
+
+    <!-- Champs (adapter selon ta table) -->
+    <field name="nom_client" class="java.lang.String"/>
+    <field name="date_vente" class="java.sql.Timestamp"/>
+    <field name="produit" class="java.lang.String"/>
+    <field name="quantite" class="java.lang.Integer"/>
+    <field name="prix_unitaire" class="java.math.BigDecimal"/>
+    <field name="total_ligne" class="java.math.BigDecimal"/>
+    <field name="total_general" class="java.math.BigDecimal"/>
+    <field name="montant_verse" class="java.math.BigDecimal"/>
+    <field name="reste_payer" class="java.math.BigDecimal"/>
+
+    <!-- Titre (Logo + Nom boutique) -->
+    <title>
+        <band height="60">
+            <image>
+                <reportElement x="100" y="0" width="100" height="40"/>
+                <imageExpression><![CDATA[$P{LOGO_PATH}]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="0" y="45" width="280" height="15" uuid="titre-nom"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[TICKET DE CAISSE]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <!-- Info client et date -->
+    <pageHeader>
+        <band height="30">
+            <textField>
+                <reportElement x="0" y="0" width="280" height="12"/>
+                <textElement><font size="8"/></textElement>
+                <textFieldExpression><![CDATA["Client : " + $F{nom_client}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="15" width="280" height="12"/>
+                <textElement><font size="8"/></textElement>
+                <textFieldExpression><![CDATA["Date : " + $F{date_vente}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <!-- Tableau produits -->
+    <columnHeader>
+        <band height="15">
+            <staticText><reportElement x="0" y="0" width="120" height="12"/><textElement><font size="8" isBold="true"/></textElement><text><![CDATA[Produit]]></text></staticText>
+            <staticText><reportElement x="125" y="0" width="40" height="12"/><textElement><font size="8" isBold="true"/></textElement><text><![CDATA[Qté]]></text></staticText>
+            <staticText><reportElement x="170" y="0" width="50" height="12"/><textElement><font size="8" isBold="true"/></textElement><text><![CDATA[PU]]></text></staticText>
+            <staticText><reportElement x="225" y="0" width="55" height="12"/><textElement><font size="8" isBold="true"/></textElement><text><![CDATA[Total]]></text></staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="15">
+            <textField><reportElement x="0" y="0" width="120" height="12"/><textElement><font size="8"/></textElement><textFieldExpression><![CDATA[$F{produit}]]></textFieldExpression></textField>
+            <textField><reportElement x="125" y="0" width="40" height="12"/><textElement textAlignment="Right"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{quantite}]]></textFieldExpression></textField>
+            <textField><reportElement x="170" y="0" width="50" height="12"/><textElement textAlignment="Right"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{prix_unitaire}]]></textFieldExpression></textField>
+            <textField><reportElement x="225" y="0" width="55" height="12"/><textElement textAlignment="Right"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{total_ligne}]]></textFieldExpression></textField>
+        </band>
+    </detail>
+
+    <!-- Pied de page avec total -->
+    <columnFooter>
+        <band height="60">
+            <textField><reportElement x="150" y="0" width="130" height="12"/><textElement textAlignment="Right"><font size="9" isBold="true"/></textElement><textFieldExpression><![CDATA["TOTAL : " + $F{total_general} + " FCFA"]]></textFieldExpression></textField>
+            <textField><reportElement x="150" y="15" width="130" height="12"/><textElement textAlignment="Right"><font size="8"/></textElement><textFieldExpression><![CDATA["Payé : " + $F{montant_verse}]]></textFieldExpression></textField>
+            <textField><reportElement x="150" y="30" width="130" height="12"/><textElement textAlignment="Right"><font size="8" isBold="true" pdfFontName="Helvetica-Bold" isItalic="false"/><textElement markup="none"/></textElement><textFieldExpression><![CDATA["Reste : " + $F{reste_payer}]]></textFieldExpression></textField>
+        </band>
+    </columnFooter>
+
+    <!-- Bas de ticket -->
+    <pageFooter>
+        <band height="20">
+            <staticText>
+                <reportElement x="0" y="0" width="280" height="12"/>
+                <textElement textAlignment="Center"><font size="8" isItalic="true"/></textElement>
+                <text><![CDATA[Merci pour votre achat !]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+</jasperReport>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="journal_achats" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8b8d4d2a-d6a3-4e0b-b3e8-111111111111">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQLAdapter"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="date_debut" class="java.lang.String"/>
+	<parameter name="date_fin" class="java.lang.String"/>
+	<parameter name="fournisseur_id" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="TITRE_RAPPORT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="utilisateur_id" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="LOGO_PATH" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="IMAGE_LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+            f.id AS fournisseur_id,
+            f.nom,
+            f.adresse,
+            f.telephone,
+            f.email,
+            SUM(a.totalTTC) AS total_achats,
+
+            e.id            AS entreprise_id,
+            e.nom           AS entreprise_nom,
+            e.adresse       AS entreprise_adresse,
+            e.telephone     AS entreprise_telephone,
+            e.email         AS entreprise_email,
+            e.site_web      AS entreprise_site_web,
+            e.ninea         AS entreprise_ninea,
+           e.rccm          AS entreprise_rccm,
+           e.logo          AS entreprise_logo
+        FROM fournisseurs f
+        LEFT JOIN achats a ON a.fournisseur_id = f.id
+        LEFT JOIN entreprise e ON a.entreprise_id = e.id
+       WHERE
+    (
+        ($P{date_debut} IS NULL OR $P{date_fin} IS NULL)
+        OR (a.date_achat BETWEEN $P{date_debut} AND $P{date_fin})
+    )
+    AND (
+        $P{fournisseur_id} IS NULL OR f.id = $P{fournisseur_id}
+    )
+        GROUP BY f.id, f.nom, f.adresse, f.telephone, f.email, e.nom,    e.adresse, e.telephone, e.email, e.logo]]>
+	</queryString>
+	<field name="fournisseur_id" class="java.lang.Integer"/>
+	<field name="nom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adresse" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telephone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_achats" class="java.math.BigDecimal"/>
+	<field name="entreprise_id" class="java.lang.Integer"/>
+	<field name="entreprise_nom" class="java.lang.String"/>
+	<field name="entreprise_adresse" class="java.lang.String"/>
+	<field name="entreprise_telephone" class="java.lang.String"/>
+	<field name="entreprise_email" class="java.lang.String"/>
+	<field name="entreprise_site_web" class="java.lang.String"/>
+	<field name="entreprise_ninea" class="java.lang.String"/>
+	<field name="entreprise_rccm" class="java.lang.String"/>
+	<field name="entreprise_logo" class="java.lang.String"/>
+	<title>
+		<band height="70">
+			<image>
+				<reportElement x="0" y="0" width="80" height="60" uuid="b564bd20-8991-4eb8-a0a3-988b59b9eb49"/>
+				<imageExpression><![CDATA[$P{IMAGE_LOGO}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="2" width="555" height="31" uuid="80c83a45-bae2-4d01-91cf-77c97f9b93c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entreprise_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="32" width="555" height="15" uuid="fc010506-cf14-48e6-abab-399a54e2be5e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Téléphone : " + " " + $F{entreprise_telephone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="49" width="555" height="15" uuid="55e8c7cb-bace-40be-967c-cbbc524d5e02"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Email : " + " " + $F{entreprise_email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50">
+			<textField>
+				<reportElement x="0" y="7" width="555" height="24" uuid="69367a69-3bd4-41cb-a8d3-ac9c1d2b3998"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITRE_RAPPORT} == null ? "Etat des Fournisseurs" : $P{TITRE_RAPPORT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="34" width="555" height="16" uuid="2acf063b-6bd9-4f30-a011-750551d81d44"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Période : "
+            + ($P{date_debut} == null || $P{date_debut}.trim().isEmpty() ? "-" :
+               new java.text.SimpleDateFormat("dd/MM/yyyy").format(
+                   new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{date_debut})
+               )
+            )
+            + " → "
+            + ($P{date_fin} == null || $P{date_fin}.trim().isEmpty() ? "-" :
+               new java.text.SimpleDateFormat("dd/MM/yyyy").format(
+                   new java.text.SimpleDateFormat("yyyy-MM-dd").parse($P{date_fin})
+               )
+            )]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="117" height="20" forecolor="#FFFFFF" backcolor="#0A1F44" uuid="d90f1316-a7fe-443d-9162-cd5b6ffa0728"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Nom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="117" y="0" width="145" height="20" forecolor="#FFFFFF" backcolor="#0A1F44" uuid="507001e2-0ca2-4211-b40c-755f6514b0f0"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Adresse]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="262" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0A1F44" uuid="ac9f01f0-55f3-4e97-9c0b-0934a66d0355"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Téléphone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="362" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#0A1F44" uuid="814d42da-819a-4fa6-acbb-7a859fbd4ac0"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="462" y="0" width="88" height="20" forecolor="#FFFFFF" backcolor="#0A1F44" uuid="80f973d8-fecf-4f68-80bd-783526cc9e9e"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Total Achats]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="117" height="20" uuid="c60ed327-3184-4596-8ca5-6d2ece7fd75f"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="0" width="145" height="20" uuid="d88a14e6-d5f0-4edc-81ec-85f66e8f7127"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adresse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="100" height="20" uuid="be6a6209-9a31-4a47-bff8-8ce0512897b7"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telephone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="0" width="100" height="20" uuid="236e313f-167f-475f-9c61-60e6baa51ca8"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="464" y="0" width="86" height="20" uuid="5a1ce572-1c62-4649-b529-89855e920ae6"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_achats}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,74 @@
+/* Style général pour tous les DataTables */
+.table.dataTable {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+/* En-tête */
+.table.dataTable thead th {
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+}
+
+/* Lignes */
+.table.dataTable tbody td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Hover */
+.table.dataTable tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Boutons d’export */
+.dt-buttons {
+    margin-bottom: 15px;
+}
+.dt-button {
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 6px 12px !important;
+    margin-right: 5px !important;
+    font-size: 13px !important;
+    transition: 0.3s ease-in-out;
+}
+
+/* Couleurs des boutons */
+.dt-button.buttons-excel {
+    background-color: #27ae60 !important;
+    color: #fff !important;
+}
+.dt-button.buttons-pdf {
+    background-color: #c0392b !important;
+    color: #fff !important;
+}
+.dt-button.buttons-print {
+    background-color: #34495e !important;
+    color: #fff !important;
+}
+
+/* Effet hover sur les boutons */
+.dt-button:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+/* Pagination */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 4px !important;
+    padding: 5px 10px !important;
+    margin: 2px;
+    border: 1px solid #ddd !important;
+    background: #fff !important;
+    color: #2c3e50 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #2c3e50 !important;
+    color: #fff !important;
+}

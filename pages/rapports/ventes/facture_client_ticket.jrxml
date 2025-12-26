@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticket_caisse" pageWidth="300" pageHeight="420" columnWidth="280" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="c34b8a7f-12c9-4a75-9b6f-ecb0919ef4a2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idVente" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="logoPath" class="java.lang.String"/>
+	<parameter name="DOCUMENT_ID" class="java.lang.String"/>
+	<parameter name="IMAGE_LOGO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     entreprise.`id` AS entreprise_id,
+     entreprise.`nom` AS entreprise_nom,
+     entreprise.`adresse` AS entreprise_adresse,
+     entreprise.`telephone` AS entreprise_telephone,
+     entreprise.`email` AS entreprise_email,
+     entreprise.`site_web` AS entreprise_site_web,
+     entreprise.`ninea` AS entreprise_ninea,
+     entreprise.`rccm` AS entreprise_rccm,
+     entreprise.`logo` AS entreprise_logo,
+     entreprise.`created_at` AS entreprise_created_at,
+     entreprise.`updated_at` AS entreprise_updated_at,
+     ventes.`id` AS ventes_id,
+     ventes.`numero` AS ventes_numero,
+     ventes.`client_id` AS ventes_client_id,
+     ventes.`date_vente` AS ventes_date_vente,
+     ventes.`totalHT` AS ventes_totalHT,
+     ventes.`taxe` AS ventes_taxe,
+     ventes.`remise` AS ventes_remise,
+     ventes.`totalTTC` AS ventes_totalTTC,
+     ventes.`montant_verse` AS ventes_montant_verse,
+     ventes.`reste_a_payer` AS ventes_reste_a_payer,
+     ventes.`type_vente` AS ventes_type_vente,
+     ventes.`mode_paiement_id` AS ventes_mode_paiement_id,
+     ventes.`statut` AS ventes_statut,
+     ventes.`commentaire` AS ventes_commentaire,
+     ventes.`annule` AS ventes_annule,
+     ventes.`devise_id` AS ventes_devise_id,
+     ventes.`montant_devise` AS ventes_montant_devise,
+     ventes.`taux_change` AS ventes_taux_change,
+     ventes.`entreprise_id` AS ventes_entreprise_id,
+     ventes.`created_at` AS ventes_created_at,
+     ventes_details.`id` AS ventes_details_id,
+     ventes_details.`vente_id` AS ventes_details_vente_id,
+     ventes_details.`produit_id` AS ventes_details_produit_id,
+     ventes_details.`quantite` AS ventes_details_quantite,
+     ventes_details.`prix_unitaire` AS ventes_details_prix_unitaire,
+     ventes_details.`depot_id` AS ventes_details_depot_id,
+     devises.`id` AS devises_id,
+     devises.`code` AS devises_code,
+     devises.`nom` AS devises_nom,
+     devises.`symbole` AS devises_symbole,
+     devises.`taux_par_defaut` AS devises_taux_par_defaut,
+     devises.`actif` AS devises_actif,
+     devises.`date_mise_a_jour` AS devises_date_mise_a_jour,
+     clients.`idClient` AS clients_idClient,
+     clients.`nom` AS clients_nom,
+     clients.`telephone` AS clients_telephone,
+     clients.`email` AS clients_email,
+     clients.`adresse` AS clients_adresse,
+     clients.`exonere` AS clients_exonere,
+     clients.`type` AS clients_type,
+     clients.`created_at` AS clients_created_at,
+     produits.`id` AS produits_id,
+     produits.`nom` AS produits_nom,
+     produits.`reference` AS produits_reference,
+     produits.`description` AS produits_description,
+     produits.`prix_achat` AS produits_prix_achat,
+     produits.`prix_vente` AS produits_prix_vente,
+     produits.`stock_total` AS produits_stock_total,
+     produits.`seuil_alerte` AS produits_seuil_alerte,
+     produits.`categorie_id` AS produits_categorie_id,
+     produits.`depot_id` AS produits_depot_id,
+     produits.`image` AS produits_image,
+     produits.`unite_id` AS produits_unite_id,
+     produits.`created_at` AS produits_created_at,
+     modes_paiement.`id` AS modes_paiement_id,
+     modes_paiement.`code` AS modes_paiement_code,
+     modes_paiement.`libelle` AS modes_paiement_libelle,
+     modes_paiement.`type_caisse_id` AS modes_paiement_type_caisse_id,
+     ventes.`mode_paiement_id` AS ventes_mode_paiement_id
+FROM
+     `entreprise` entreprise INNER JOIN `ventes` ventes ON entreprise.`id` = ventes.`entreprise_id`
+     INNER JOIN `ventes_details` ventes_details ON ventes.`id` = ventes_details.`vente_id`
+     INNER JOIN `devises` devises ON ventes.`devise_id` = devises.`id`
+     INNER JOIN `clients` clients ON ventes.`client_id` = clients.`idClient`
+     INNER JOIN `modes_paiement` modes_paiement ON ventes.`mode_paiement_id` = modes_paiement.`id`
+     INNER JOIN `produits` produits ON ventes_details.`produit_id` = produits.`id`
+WHERE
+     ventes.`id` = $P{DOCUMENT_ID}]]>
+	</queryString>
+	<field name="entreprise_id" class="java.lang.Integer"/>
+	<field name="entreprise_nom" class="java.lang.String"/>
+	<field name="entreprise_adresse" class="java.lang.String"/>
+	<field name="entreprise_telephone" class="java.lang.String"/>
+	<field name="entreprise_email" class="java.lang.String"/>
+	<field name="entreprise_site_web" class="java.lang.String"/>
+	<field name="entreprise_ninea" class="java.lang.String"/>
+	<field name="entreprise_rccm" class="java.lang.String"/>
+	<field name="entreprise_logo" class="java.lang.String"/>
+	<field name="entreprise_created_at" class="java.sql.Timestamp"/>
+	<field name="entreprise_updated_at" class="java.sql.Timestamp"/>
+	<field name="ventes_id" class="java.lang.Integer"/>
+	<field name="ventes_numero" class="java.lang.String"/>
+	<field name="ventes_client_id" class="java.lang.Integer"/>
+	<field name="ventes_date_vente" class="java.sql.Timestamp"/>
+	<field name="ventes_totalHT" class="java.math.BigDecimal"/>
+	<field name="ventes_taxe" class="java.math.BigDecimal"/>
+	<field name="ventes_remise" class="java.math.BigDecimal"/>
+	<field name="ventes_totalTTC" class="java.math.BigDecimal"/>
+	<field name="ventes_montant_verse" class="java.math.BigDecimal"/>
+	<field name="ventes_reste_a_payer" class="java.math.BigDecimal"/>
+	<field name="ventes_type_vente" class="java.lang.String"/>
+	<field name="ventes_mode_paiement_id" class="java.lang.Integer"/>
+	<field name="ventes_statut" class="java.lang.String"/>
+	<field name="ventes_commentaire" class="java.lang.String"/>
+	<field name="ventes_annule" class="java.lang.Boolean"/>
+	<field name="ventes_devise_id" class="java.lang.Integer"/>
+	<field name="ventes_montant_devise" class="java.math.BigDecimal"/>
+	<field name="ventes_taux_change" class="java.math.BigDecimal"/>
+	<field name="ventes_entreprise_id" class="java.lang.Integer"/>
+	<field name="ventes_created_at" class="java.sql.Timestamp"/>
+	<field name="ventes_details_id" class="java.lang.Integer"/>
+	<field name="ventes_details_vente_id" class="java.lang.Integer"/>
+	<field name="ventes_details_produit_id" class="java.lang.Integer"/>
+	<field name="ventes_details_quantite" class="java.lang.Integer"/>
+	<field name="ventes_details_prix_unitaire" class="java.math.BigDecimal"/>
+	<field name="ventes_details_depot_id" class="java.lang.Integer"/>
+	<field name="devises_id" class="java.lang.Integer"/>
+	<field name="devises_code" class="java.lang.String"/>
+	<field name="devises_nom" class="java.lang.String"/>
+	<field name="devises_symbole" class="java.lang.String"/>
+	<field name="devises_taux_par_defaut" class="java.math.BigDecimal"/>
+	<field name="devises_actif" class="java.lang.Boolean"/>
+	<field name="devises_date_mise_a_jour" class="java.sql.Timestamp"/>
+	<field name="clients_idClient" class="java.lang.Integer"/>
+	<field name="clients_nom" class="java.lang.String"/>
+	<field name="clients_telephone" class="java.lang.String"/>
+	<field name="clients_email" class="java.lang.String"/>
+	<field name="clients_adresse" class="java.lang.String"/>
+	<field name="clients_exonere" class="java.lang.Boolean"/>
+	<field name="clients_type" class="java.lang.String"/>
+	<field name="clients_created_at" class="java.sql.Timestamp"/>
+	<field name="produits_id" class="java.lang.Integer"/>
+	<field name="produits_nom" class="java.lang.String"/>
+	<field name="produits_reference" class="java.lang.String"/>
+	<field name="produits_description" class="java.lang.String"/>
+	<field name="produits_prix_achat" class="java.math.BigDecimal"/>
+	<field name="produits_prix_vente" class="java.math.BigDecimal"/>
+	<field name="produits_stock_total" class="java.lang.Integer"/>
+	<field name="produits_seuil_alerte" class="java.lang.Integer"/>
+	<field name="produits_categorie_id" class="java.lang.Integer"/>
+	<field name="produits_depot_id" class="java.lang.Integer"/>
+	<field name="produits_image" class="java.lang.String"/>
+	<field name="produits_unite_id" class="java.lang.Integer"/>
+	<field name="produits_created_at" class="java.sql.Timestamp"/>
+	<field name="modes_paiement_id" class="java.lang.Integer"/>
+	<field name="modes_paiement_code" class="java.lang.String"/>
+	<field name="modes_paiement_libelle" class="java.lang.String"/>
+	<field name="modes_paiement_type_caisse_id" class="java.lang.Integer"/>
+	<title>
+		<band height="60">
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="280" height="40" uuid="6dfde7ef-b84e-4589-b6f4-78ad88a2530d"/>
+				<imageExpression><![CDATA[$P{IMAGE_LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="45" width="280" height="15" uuid="9e7af815-2ef1-47b2-91e5-c70f66a9b2fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TICKET DE CAISSE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="32">
+			<textField>
+				<reportElement x="2" y="0" width="280" height="15" uuid="99a1222e-6fc9-4fd2-9881-117fa60a9ece"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Client : " + $F{clients_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="15" width="280" height="15" uuid="08fceaf8-6e8e-4210-93ee-4e68d254f5ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date : " + $F{ventes_date_vente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="12" uuid="50fdbb83-097c-4a48-b62d-ec92c1a947b1"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="0" width="40" height="12" uuid="9ce7edbb-53b3-41d8-832d-b327490ba0bc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qté]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="50" height="12" uuid="f4d4232e-b3c9-4e57-b0e1-7c6d85adcf4e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="0" width="55" height="12" uuid="1cfdb233-8b7b-4d4d-b83c-01562eec8327"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="120" height="12" uuid="5a7b9a82-788a-4f2a-92ad-b17cc1b57fd9"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produits_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="0" width="40" height="12" uuid="cb91a924-bfb0-45c7-9126-b99c1641b93c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ventes_details_quantite}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="170" y="0" width="50" height="12" uuid="d6d2d4f3-b18c-45c9-80f0-3c4f0cdd8e31"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ventes_details_prix_unitaire}.doubleValue() / $F{devises_taux_par_defaut}.doubleValue()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="225" y="0" width="55" height="12" uuid="48f91c09-84a7-46c9-962a-2efb2b4b2390"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ventes_details_quantite}.doubleValue() * $F{ventes_details_prix_unitaire}.doubleValue()/$F{devises_taux_par_defaut}.doubleValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="60">
+			<textField>
+				<reportElement x="150" y="0" width="130" height="12" uuid="8bc7b87b-cbdb-41f3-9ef9-47424c54067b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL : "+ new java.text.DecimalFormat("#,##0.00").format($F{ventes_montant_devise}) + " (" + $F{devises_symbole} + ")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="15" width="130" height="12" uuid="7b3441d7-1c74-456f-98a7-5b8e69ec25a0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Payé : " +
+ new java.text.DecimalFormat("#,##0.00").format($F{ventes_montant_verse}.doubleValue()/$F{devises_taux_par_defaut}.doubleValue()) + " (" + $F{devises_symbole} + ")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="30" width="84" height="12" uuid="407fa6e6-0c75-47f6-98f7-0bc6ad6f6354"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rendu :  " +
+($F{ventes_totalTTC}.subtract($F{ventes_montant_verse})).doubleValue()/$F{devises_taux_par_defaut}.doubleValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="280" height="12" uuid="8c52c2a7-1221-4a2f-81c1-93f5fba4544b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="8" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Merci pour votre achat !]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

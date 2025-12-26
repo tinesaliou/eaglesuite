@@ -1,0 +1,1 @@
+"C:\xampp\htdocs\eaglesuite\pages\rapports\utils/jasperstarter8.bat" process "C:\xampp\htdocs\eaglesuite\pages\rapports\ventes/facture_client_a4.jasper" -o "C:\xampp\htdocs\eaglesuite\pages\rapports\utils/tmp\facture_client_20251216_133120" -f pdf -t mysql -H localhost -n eaglesuite -u saliou -p tine -P DOCUMENT_ID="1"

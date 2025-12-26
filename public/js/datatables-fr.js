@@ -1,0 +1,28 @@
+$(document).ready(function () {
+    $('#ventesTable').DataTable({
+        responsive: true,
+        language: {
+            decimal: ",",
+            thousands: " ",
+            processing: "Traitement en cours...",
+            search: "Rechercher&nbsp;:",
+            lengthMenu: "Afficher _MENU_ éléments",
+            info: "Affichage de l’élément _START_ à _END_ sur _TOTAL_ éléments",
+            infoEmpty: "Affichage de l’élément 0 à 0 sur 0 élément",
+            infoFiltered: "(filtré de _MAX_ éléments au total)",
+            loadingRecords: "Chargement en cours...",
+            zeroRecords: "Aucun élément à afficher",
+            emptyTable: "Aucune donnée disponible dans le tableau",
+            paginate: {
+                first: "Premier",
+                previous: "Précédent",
+                next: "Suivant",
+                last: "Dernier"
+            },
+            aria: {
+                sortAscending: ": activer pour trier la colonne par ordre croissant",
+                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+            }
+        }
+    });
+});
