@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $raison       = trim($_POST['raison'] ?? '');
     $depot_id     = $_POST['depot_id'] ?? null;
     $produits     = $_POST['produits'] ?? []; 
-    $user_id      = $_SESSION['user_id'] ?? null;
+    $user_id      = $_SESSION['user']['id'] ?? null;
 
     if ($depot_id && !empty($produits)) {
         // 🔹 Insert retour

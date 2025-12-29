@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../../config/db.php";
 session_start();
 
-$user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user']['id'];
 
 // Vérifier si déjà ouverte
 $stmt = $conn->prepare("

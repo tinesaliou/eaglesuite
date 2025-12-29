@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . "/../../config/db.php";
 
-$utilisateur_id = $_SESSION['user_id'] ?? null;
+$utilisateur_id = $_SESSION['user']['id'] ?? null;
 if (!$utilisateur_id) {
     throw new Exception("Utilisateur non authentifié");
 }
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $type_achat     = $_POST['type_achat'] ?? 'Comptant';
     $produits       = $_POST['produits'] ?? [];
     $devise_id = $_POST['devise_id'] ?? null;
-    $utilisateur_id = $_SESSION['user_id'] ?? null; 
+    $utilisateur_id = $_SESSION['user']['id'] ?? null; 
 
     
     $taux_change    = floatval($_POST['taux_change'] ?? 1);

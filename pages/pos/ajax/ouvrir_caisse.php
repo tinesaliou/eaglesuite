@@ -2,11 +2,11 @@
 require_once __DIR__ . "/../../../config/db.php";
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user']['id'])) {
     die("Utilisateur non authentifié");
 }
 
-$utilisateur_id = $_SESSION['user_id'];
+$utilisateur_id = $_SESSION['user']['id'];
 $caisse_id      = (int)$_POST['caisse_id'];
 
 /* =======================

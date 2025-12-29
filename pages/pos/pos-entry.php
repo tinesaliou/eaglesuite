@@ -3,7 +3,7 @@ require_once __DIR__ . "/../../config/db.php";
 //session_start();
 
 /* Sécurité session */
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user']['id'])) {
     header("Location: /eaglesuite/index.php?page=login");
     exit;
 }
@@ -14,7 +14,7 @@ $stmt = $conn->prepare("
     FROM sessions_caisse
     WHERE utilisateur_id = ? AND statut = 'ouverte'
 ");
-$stmt->execute([$_SESSION['user_id']]);
+$stmt->execute([$_SESSION['user']['id']]);
 $session = $stmt->fetch();
 
 /* Redirection */

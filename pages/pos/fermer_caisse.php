@@ -8,7 +8,7 @@ $stmt = $conn->prepare("
     FROM sessions_caisse sc
     WHERE sc.utilisateur_id = ? AND sc.statut = 'ouverte'
 ");
-$stmt->execute([$_SESSION['user_id']]);
+$stmt->execute([$_SESSION['user']['id']]);
 $session = $stmt->fetch();
 
 if (!$session) {

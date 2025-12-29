@@ -8,7 +8,7 @@ $stmt = $conn->prepare("
     FROM sessions_caisse 
     WHERE utilisateur_id = ? AND statut = 'ouverte'
 ");
-$stmt->execute([$_SESSION['user_id']]);
+$stmt->execute([$_SESSION['user']['id']]);
 if ($stmt->fetchColumn() > 0) {
     die("<div class='alert alert-warning'>⚠️ Une caisse est déjà ouverte</div>");
 }

@@ -4,7 +4,7 @@
 if (session_status() === PHP_SESSION_NONE) session_start();
 
 // Si pas connecté, on n'affiche pas le menu
-if (empty($_SESSION['user_id'])) return;
+if (empty($_SESSION['user']['id'])) return;
 
 ?>
 <aside class="app-sidebar" id="appSidebar" role="navigation">

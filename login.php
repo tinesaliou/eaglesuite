@@ -3,10 +3,11 @@
 
 session_start();
 
-require_once __DIR__ . "/config/db.php"; // Connexion à la base
+require_once __DIR__ . "/config/db.php";
+require_once __DIR__ . "/includes/check_auth.php"; 
 
 //  Si déjà connecté, redirige vers le tableau de bord
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user']['id'])) {
     header("Location: index.php?page=dashboard");
     exit;
 }
@@ -23,27 +24,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['mot_de_passe'])) {
-            //  Authentification réussie
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['role_id'] = $user['role_id'];
+           
+          session_regenerate_id(true);
 
-            // Charger les permissions de ce rôle
-            $permStmt = $conn->prepare("
-                SELECT p.code
-                FROM permissions p
-                INNER JOIN role_permissions rp ON rp.permission_id = p.id
-                WHERE rp.role_id = ?
-            ");
-            $permStmt->execute([$user['role_id']]);
-            $permissions = $permStmt->fetchAll(PDO::FETCH_COLUMN);
+            // Stockage utilisateur NORMALISÉ
+            $_SESSION['user'] = [
+                'id'      => (int)$user['id'],
+                'role_id' => (int)$user['role_id'],
+                'actif'   => (int)$user['actif'],
+                'nom'     => $user['nom'],
+                'email'   => $user['email']
+            ];
 
-            $_SESSION['permissions'] = [];
-
-            foreach ($permissions as $p) {
-                $_SESSION['permissions'][$p] = true;
-            }
-
-            //var_dump($_SESSION);
+            // Charger permissions une seule fois
+            loadUserPermissions();
 
             header("Location: index.php?page=dashboard");
             exit;

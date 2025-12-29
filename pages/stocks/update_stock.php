@@ -69,7 +69,7 @@ try {
     $depot_dest_id = $delta > 0 ? $depot_id : null;
     $ref_table = 'inventaire';
     $ref_id = $stockId;
-    $utilisateur_id = $_SESSION['user_id'];
+    $utilisateur_id = $_SESSION['user']['id'];
 
     $stmt->execute([
         $produit_id,

@@ -8,7 +8,7 @@ $stmt = $conn->prepare("
     SELECT id, pos_pin, pos_pin_tentatives, pos_pin_blocage
     FROM utilisateurs WHERE id = ?
 ");
-$stmt->execute([$_SESSION['user_id']]);
+$stmt->execute([$_SESSION['user']['id']]);
 $user = $stmt->fetch();
 
 if (!$user || !$user['pos_pin']) {
@@ -26,7 +26,7 @@ if (!password_verify($pin, $user['pos_pin'])) {
         SET pos_pin_tentatives = pos_pin_tentatives + 1,
             pos_pin_blocage = IF(pos_pin_tentatives >= 2, DATE_ADD(NOW(), INTERVAL 5 MINUTE), NULL)
         WHERE id = ?
-    ")->execute([$_SESSION['user_id']]);
+    ")->execute([$_SESSION['user']['id']]);
 
     header("Location: index.php?page=pos-pin&err=1");
     exit;
@@ -37,7 +37,7 @@ $conn->prepare("
     UPDATE utilisateurs
     SET pos_pin_tentatives = 0, pos_pin_blocage = NULL
     WHERE id = ?
-")->execute([$_SESSION['user_id']]);
+")->execute([$_SESSION['user']['id']]);
 
 $_SESSION['pos_auth'] = true;
 $_SESSION['pos_last_activity'] = time();

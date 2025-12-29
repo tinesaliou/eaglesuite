@@ -4,7 +4,7 @@
         <form method="POST" action="/eaglesuite/api/dettes/solder_dette.php">
             <input type="hidden" name="dette_id" value="<?= $dette['id'] ?>">
             <input type="hidden" name="caisse_id" value="1">
-            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? 0 ?>">
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id'] ?? 0 ?>">
 
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">

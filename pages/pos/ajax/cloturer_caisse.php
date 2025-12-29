@@ -12,7 +12,7 @@ $stmt = $conn->prepare("
     FROM sessions_caisse
     WHERE utilisateur_id = ? AND statut = 'ouverte'
 ");
-$stmt->execute([$_SESSION['user_id']]);
+$stmt->execute([$_SESSION['user']['id']]);
 $session = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$session) {

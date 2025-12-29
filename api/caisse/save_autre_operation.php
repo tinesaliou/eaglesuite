@@ -2,7 +2,7 @@
 require_once __DIR__ . "/../../config/db.php";
 session_start();
 
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user']['id'])) {
     die("Utilisateur non authentifié");
 }
 
@@ -11,7 +11,7 @@ $type_operation = $_POST['type']; // entree | sortie
 $categorie = trim($_POST['categorie']);
 $montant = (float)$_POST['montant'];
 $commentaire = trim($_POST['commentaire']);
-$utilisateur_id = $_SESSION['user_id'];
+$utilisateur_id = $_SESSION['user']['id'];
 
 if (!$caisse_type_id || $montant <= 0 || !in_array($type_operation, ['entree','sortie'])) {
     die("Données invalides");

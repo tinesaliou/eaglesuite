@@ -8,12 +8,12 @@ require_once __DIR__ . '/../config/db.php';
 function loadUserPermissions() {
     global $conn;
 
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         return;
     }
 
     $stmt = $conn->prepare("SELECT role_id FROM utilisateurs WHERE id = ?");
-    $stmt->execute([$_SESSION['user_id']]);
+    $stmt->execute([$_SESSION['user']['id']]);
     $u = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$u || !$u['role_id']) {
@@ -42,7 +42,7 @@ function loadUserPermissions() {
    VÉRIFIER UNE PERMISSION
 --------------------------*/
 function checkPermission($code) {
-    if (!isset($_SESSION['user_id'])) return false;
+    if (!isset($_SESSION['user']['id'])) return false;
     if (!isset($_SESSION['permissions'])) loadUserPermissions();
     return isset($_SESSION['permissions'][$code]);
 }
@@ -51,7 +51,7 @@ function checkPermission($code) {
    EXIGER UNE PERMISSION AVANT DE CHARGER LA PAGE
 ---------------------------------------------*/
 function requirePermission($code) {
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         header("Location: /eaglesuite/login.php");
         exit;
     }
@@ -74,6 +74,7 @@ function check_page_permission($page) {
         'produits'         => 'produits.view',
         'categories'       => 'categories.view',
         'ventes'           => 'ventes.view',
+        'pos'              => 'pos.view',
         'achats'           => 'achats.view',
         'creances'         => 'creances.view',
         'dettes'           => 'dettes.view',

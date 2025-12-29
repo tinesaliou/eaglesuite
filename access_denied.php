@@ -22,7 +22,7 @@ http_response_code(403);
       <div class="card-body text-center">
         <h3 class="text-danger">Accès refusé</h3>
         <p class="mb-4">Vous n'avez pas la permission nécessaire pour voir cette page.</p>
-        <?php if (!empty($_SESSION['user_id'])): ?>
+        <?php if (!empty($_SESSION['user']['id'])): ?>
           <a href="/eaglesuite/index.php?page=dashboard" class="btn btn-primary">Retour au tableau de bord</a>
         <?php else: ?>
           <a href="/eaglesuite/login.php" class="btn btn-primary">Se connecter</a>

@@ -2,9 +2,9 @@
 session_start();
 require_once __DIR__ . "/../../config/db.php";
 
-if (empty($_SESSION['user_id'])) exit("Non autorisé.");
+if (empty($_SESSION['user']['id'])) exit("Non autorisé.");
 
-$id = $_SESSION['user_id'];
+$id = $_SESSION['user']['id'];
 
 // Mise à jour nom + email
 if (!empty($_POST['nom']) && !empty($_POST['email'])) {

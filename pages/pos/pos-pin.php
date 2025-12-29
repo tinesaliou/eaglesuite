@@ -4,12 +4,12 @@ require_once __DIR__ . "/../../config/db.php";
 require_once __DIR__ . "/pos_guard.php";
 //session_start();
 
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user']['id'])) {
     header("Location: /eaglesuite/login.php");
     exit;
 }
 
-$utilisateur_id = $_SESSION['user_id'];
+$utilisateur_id = $_SESSION['user']['id'];
 $caisse_id = (int)($_POST['caisse_id'] ?? 0);
 
 if (!$caisse_id) {

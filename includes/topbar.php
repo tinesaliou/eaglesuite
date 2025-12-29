@@ -5,9 +5,9 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/../config/db.php';
 
 $utilisateur = null;
-if (!empty($_SESSION['user_id'])) {
+if (!empty($_SESSION['user']['id'])) {
     $stmt = $conn->prepare("SELECT id, nom, email FROM utilisateurs WHERE id = ?");
-    $stmt->execute([$_SESSION['user_id']]);
+    $stmt->execute([$_SESSION['user']['id']]);
     $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
     // ne pas manipuler la session ici
 }

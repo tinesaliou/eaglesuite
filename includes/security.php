@@ -10,13 +10,13 @@ require_once __DIR__ . '/../config/db.php';
 function loadUserPermissions() {
     global $conn;
 
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         return;
     }
 
     // Récupérer le rôle de l’utilisateur
     $stmt = $conn->prepare("SELECT role_id FROM utilisateurs WHERE id = ?");
-    $stmt->execute([$_SESSION['user_id']]);
+    $stmt->execute([$_SESSION['user']['id']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user || empty($user['role_id'])) {
@@ -46,7 +46,7 @@ function loadUserPermissions() {
  *  Vérifie si l'utilisateur connecté possède une permission spécifique
  */
 function checkPermission($code) {
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         return false;
     }
 
@@ -104,7 +104,7 @@ function hasAllPermissions($codes) {
  *  Redirige automatiquement si l'utilisateur n'a pas la permission requise
  */
 function requirePermission($code) {
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         header("Location: /eaglesuite/login.php");
         exit;
     }

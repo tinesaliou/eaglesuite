@@ -2,12 +2,12 @@
 require_once __DIR__ . "/../../config/db.php";
 //session_start();
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user']['id'])) {
     header("Location: /eaglesuite/index.php?page=login");
     exit;
 }
 
-$utilisateur_id = $_SESSION['user_id'];
+$utilisateur_id = $_SESSION['user']['id'];
 
 /* =======================
    SESSION CAISSE ACTIVE

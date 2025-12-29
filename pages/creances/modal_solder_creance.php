@@ -4,7 +4,7 @@
         <form method="POST" action="/eaglesuite/api/creances/solder_creance.php">
             <input type="hidden" name="creance_id" value="<?= $creance['id'] ?>">
             <input type="hidden" name="caisse_id" value="1">
-            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? 0 ?>">
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id'] ?? 0 ?>">
 
             <div class="modal-content">
                 <div class="modal-header bg-success text-white">

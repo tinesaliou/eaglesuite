@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../../config/db.php";
 require_once __DIR__ . "/../../includes/check_auth.php";
 header('Content-Type: application/json; charset=utf-8');
-if(empty($_SESSION['user_id'])) { echo json_encode(['success'=>false,'error'=>'Non connecté']); exit; }
+if(empty($_SESSION['user']['id'])) { echo json_encode(['success'=>false,'error'=>'Non connecté']); exit; }
 
 $action = $_POST['action'] ?? '';
 
@@ -14,7 +14,7 @@ try {
     $sujet = $_POST['sujet'] ?? null;
     $message = $_POST['message'] ?? null;
     $stmt = $conn->prepare("INSERT INTO crm_interactions (client_id, utilisateur_id, type, sujet, message) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$client_id, $_SESSION['user_id'], $type, $sujet, $message]);
+    $stmt->execute([$client_id, $_SESSION['user']['id'], $type, $sujet, $message]);
     echo json_encode(['success'=>true,'id'=>$conn->lastInsertId()]);
     exit;
   }
@@ -24,7 +24,7 @@ try {
     $titre = trim($_POST['titre'] ?? 'Nouvelle opportunité');
     $montant = floatval($_POST['montant'] ?? 0);
     $stmt = $conn->prepare("INSERT INTO crm_opportunities (client_id, titre, montant, utilisateur_id) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$client_id, $titre, $montant, $_SESSION['user_id']]);
+    $stmt->execute([$client_id, $titre, $montant, $_SESSION['user']['id']]);
     echo json_encode(['success'=>true,'id'=>$conn->lastInsertId()]);
     exit;
   }

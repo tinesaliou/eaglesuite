@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../../config/db.php";
 
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user']['id'])) {
     header("Location: /eaglesuite/login.php");
     exit;
 }
@@ -14,7 +14,7 @@ $stmt = $conn->prepare("
     LEFT JOIN entreprise e ON e.id = u.entreprise_id
     WHERE u.id = ?
 ");
-$stmt->execute([$_SESSION['user_id']]);
+$stmt->execute([$_SESSION['user']['id']]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $profilePhoto = $user["photo"]

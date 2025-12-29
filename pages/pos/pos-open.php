@@ -8,7 +8,7 @@ if (empty($_SESSION['pos_caisse_pending'])) {
 }
 
 $caisse_id = $_SESSION['pos_caisse_pending'];
-$utilisateur_id = $_SESSION['user_id'];
+$utilisateur_id = $_SESSION['user']['id'];
 $solde_ouverture = floatval($_POST['solde_ouverture'] ?? 0);
 
 $stmt = $conn->prepare("

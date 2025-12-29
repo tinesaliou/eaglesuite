@@ -5,7 +5,7 @@ require_once __DIR__ . "/../../includes/check_auth.php";
 header('Content-Type: application/json; charset=utf-8');
 
 if (session_status() === PHP_SESSION_NONE) session_start();
-if (empty($_SESSION['user_id'])) { echo json_encode(['success'=>false,'error'=>'Non connecté']); exit; }
+if (empty($_SESSION['user']['id'])) { echo json_encode(['success'=>false,'error'=>'Non connecté']); exit; }
 
 $action = $_REQUEST['action'] ?? '';
   // add interaction
@@ -21,7 +21,7 @@ $action = $_REQUEST['action'] ?? '';
         INSERT INTO crm_interactions (client_id, utilisateur_id, type, sujet, message, suivi)
         VALUES (?, ?, ?, ?, ?, 1)
     ");
-    $stmt->execute([$client_id, $_SESSION['user_id'], $type, $sujet, $message]);
+    $stmt->execute([$client_id, $_SESSION['user']['id'], $type, $sujet, $message]);
 
     echo json_encode(['success'=>true]);
     exit;
@@ -59,14 +59,14 @@ if ($action === 'delete_interaction') {
     $titre = trim($_REQUEST['titre'] ?? 'Opportunité');
     $montant = floatval($_REQUEST['montant'] ?? 0);
     $stmt = $conn->prepare("INSERT INTO crm_opportunites (client_id, titre, montant, utilisateur_id, probabilite) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$client_id, $titre, $montant, $_SESSION['user_id'], intval($_REQUEST['probabilite'] ?? 0)]);
+    $stmt->execute([$client_id, $titre, $montant, $_SESSION['user']['id'], intval($_REQUEST['probabilite'] ?? 0)]);
     echo json_encode(['success'=>true,'id'=>$conn->lastInsertId()]); exit;
   }
 
   // add task
   if ($action === 'add_task') {
     $stmt = $conn->prepare("INSERT INTO crm_taches (client_id, opportunite_id, utilisateur_id, titre, description, date_echeance, priorite) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([ intval($_REQUEST['client_id']?:null), intval($_REQUEST['opportunite_id']?:null), $_SESSION['user_id'], $_REQUEST['titre'], $_REQUEST['description'], $_REQUEST['date_echeance']?:null, $_REQUEST['priorite']?:'moyenne' ]);
+    $stmt->execute([ intval($_REQUEST['client_id']?:null), intval($_REQUEST['opportunite_id']?:null), $_SESSION['user']['id'], $_REQUEST['titre'], $_REQUEST['description'], $_REQUEST['date_echeance']?:null, $_REQUEST['priorite']?:'moyenne' ]);
     echo json_encode(['success'=>true,'id'=>$conn->lastInsertId()]); exit;
   }
 
@@ -295,7 +295,7 @@ if ($action === 'delete_opportunity_safe') {
 
     $conn->prepare("INSERT INTO crm_activity_log (objet_type, objet_id, action, utilisateur_id, meta)
                     VALUES ('opportunity', ?, 'delete', ?, '{}')")
-         ->execute([$id, $_SESSION['user_id']]);
+         ->execute([$id, $_SESSION['user']['id']]);
 
     $conn->prepare("DELETE FROM crm_opportunites WHERE id=?")->execute([$id]);
 

@@ -8,7 +8,7 @@ require_once __DIR__ . "/../../config/db.php";
 /* ==========================
    1. Utilisateur connecté
    ========================== */
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user']['id'])) {
     header("Location: /eaglesuite/login.php");
     exit;
 }
@@ -38,7 +38,7 @@ if (empty($_SESSION['pos_caisse_id'])) {
 }
 
 $caisse_id = (int)$_SESSION['pos_caisse_id'];
-$user_id   = (int)$_SESSION['user_id'];
+$user_id   = (int)$_SESSION['user']['id'];
 
 /* ==========================
    4. Caisse active
